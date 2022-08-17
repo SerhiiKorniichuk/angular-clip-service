@@ -34,7 +34,12 @@ export class RegisterComponent {
     confirmPassword: this.confirmPassword
   })
 
+  showAlert = false
+  alertMessage = ''
+  alertColor = 'sky'
+
   submit() {
-    console.log(this.registerForm.value)
+    this.showAlert = true
+    this.alertMessage = 'Please wait! Your account is being created.'
   }
 }
