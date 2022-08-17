@@ -11,14 +11,16 @@
     [validation]="validation"
   />
   <!-- Hide Password Icon -->
-  <div
+  <button
     *ngIf="isPassword"
-    class="absolute top-0 right-0 h-full w-12 flex justify-center items-center bg-indigo-400 rounded cursor-pointer"
+    class="absolute top-0 right-0 h-full w-12 flex justify-center items-center bg-indigo-400 hover:bg-indigo-500 rounded-r cursor-pointer"
     (click)="togglePasswordVisibility()"
   >
     <!-- <img src="" alt="eye" /> -->
-    <div class="text-xs">{{ type === 'password' ? 'show' : 'hide' }}</div>
-  </div>
+    <div class="text-xs select-none">
+      {{ type === 'password' ? 'show' : 'hide' }}
+    </div>
+  </button>
 </div>
 <ng-container *ngIf="control.touched && control.dirty">
   <!-- Required -->

@@ -38,8 +38,10 @@ export class RegisterComponent {
   alertMessage = ''
   alertColor = 'sky'
 
-  submit() {
+  register() {
     this.showAlert = true
     this.alertMessage = 'Please wait! Your account is being created.'
+    console.log(this.registerForm.value)
+    this.registerForm.reset()
   }
 }
