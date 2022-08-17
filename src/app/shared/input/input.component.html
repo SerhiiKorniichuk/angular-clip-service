@@ -1,0 +1,73 @@
+<div class="relative">
+  <input
+    [formControl]="control"
+    [type]="type"
+    class="block w-full py-2 pl-3 pr-2 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+    [ngClass]="{ 'ps-12': isPassword }"
+    [min]="min"
+    [placeholder]="placeholder"
+    [mask]="mask"
+    [prefix]="prefix"
+    [validation]="validation"
+  />
+  <!-- Hide Password Icon -->
+  <div
+    *ngIf="isPassword"
+    class="absolute top-0 right-0 h-full w-12 flex justify-center items-center bg-indigo-400 rounded cursor-pointer"
+    (click)="togglePasswordVisibility()"
+  >
+    <!-- <img src="" alt="eye" /> -->
+    <div class="text-xs">{{ type === 'password' ? 'show' : 'hide' }}</div>
+  </div>
+</div>
+<ng-container *ngIf="control.touched && control.dirty">
+  <!-- Required -->
+  <p
+    *ngIf="control.errors?.['required']"
+    class="px-3 pt-1 text-red-400 text-xs"
+  >
+    Field is required
+  </p>
+  <!-- String -->
+  <p
+    *ngIf="control.errors?.['minlength']"
+    class="px-3 pt-1 text-red-400 text-xs"
+  >
+    The value must be equal or more than
+    {{ control.errors?.['minlength'].requiredLength }}
+    characters long
+  </p>
+  <p
+    *ngIf="control.errors?.['maxlength']"
+    class="px-3 pt-1 text-red-400 text-xs"
+  >
+    The value must be equal or less than
+    {{ control.errors?.['maxlength'].requiredLength }}
+    characters long
+  </p>
+  <!-- Email -->
+  <p *ngIf="control.errors?.['email']" class="px-3 pt-1 text-red-400 text-xs">
+    An example of the correct mail format: example@gmail.com
+  </p>
+  <!-- Number -->
+  <p *ngIf="control.errors?.['min']" class="px-3 pt-1 text-red-400 text-xs">
+    The value must be equal or more than {{ control.errors?.['min'].min }}
+  </p>
+  <p *ngIf="control.errors?.['max']" class="px-3 pt-1 text-red-400 text-xs">
+    The value must be equal or less than {{ control.errors?.['max'].max }}
+  </p>
+  <!-- Password -->
+  <div
+    *ngIf="control.errors?.['pattern']"
+    class="px-3 pt-1 text-red-400 text-xs"
+  >
+    <p>Password must contain:</p>
+    <p>- length between 6-30 characters</p>
+    <p>- at least 1 uppercase letter, 1 lowercase letter, and 1 number</p>
+  </div>
+  <!-- Mask -->
+  <p *ngIf="control.errors?.['mask']" class="px-3 pt-1 text-red-400 text-xs">
+    The field must be filled correctly. Example:
+    {{ control.errors?.['mask'].requiredMask }}
+  </p>
+</ng-container>

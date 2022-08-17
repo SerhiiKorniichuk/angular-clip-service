@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { ReactiveFormsModule } from '@angular/forms'
 import { ModalService } from '../services/modal/modal.service'
 import { SharedModule } from '../shared/shared.module'
 import { AuthModalComponent } from './auth-modal/auth-modal.component'
@@ -8,7 +9,7 @@ import { RegisterComponent } from './register/register.component'
 
 @NgModule({
   declarations: [AuthModalComponent, LoginComponent, RegisterComponent],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [AuthModalComponent],
   providers: [ModalService]
 })
