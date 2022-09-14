@@ -12,17 +12,14 @@
       <!-- Primary Navigation -->
       <ul class="flex flex-row mt-1">
         <!-- Navigation Links -->
-        <li>
-          <a class="px-2" href="#" (click)="openModal($event)">
-            Login / Register
-          </a>
-        </li>
-        <li>
-          <a class="px-2" href="#">Manage</a>
-        </li>
-        <li>
-          <a class="px-2" href="#">Upload</a>
-        </li>
+        <ng-container *ngIf="authService.isAuthentificated$ | async">
+          <li>
+            <a class="px-2" href="#">Manage</a>
+          </li>
+          <li>
+            <a class="px-2" href="#">Upload</a>
+          </li>
+        </ng-container>
         <li>
           <a class="px-2" href="about.html">About</a>
         </li>
@@ -53,6 +50,23 @@
             <span class="ml-1">French</span>
           </a>
         </li>
+      </ul>
+      <ul class="ml-10">
+        <li
+          *ngIf="
+            (authService.isAuthentificated$ | async) === false;
+            else logoutLink
+          "
+        >
+          <button class="px-2" href="#" (click)="openModal($event)">
+            Login / Register
+          </button>
+        </li>
+        <ng-template #logoutLink>
+          <li>
+            <button class="px-2" href="#" (click)="logout()">Logout</button>
+          </li>
+        </ng-template>
       </ul>
     </div>
   </nav>
